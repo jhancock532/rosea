@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Admin.module.css";
 
-const Home: NextPage = () => {
+const Admin: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Project Rosea</title>
+        <title>Admin</title>
         <meta
           name="description"
           content="A website integrated with the GitHub API."
@@ -15,9 +15,11 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Project Rosea</h1>
+        <h1 className={styles.title}>Administrator View</h1>
 
-        <p className={styles.description}>A demonstration app.</p>
+        <p className={styles.description}>
+          This page requires authentication to continue.
+        </p>
       </main>
 
       <footer className={styles.footer}>
@@ -27,4 +29,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Admin;
