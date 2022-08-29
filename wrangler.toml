@@ -1,0 +1,6 @@
+name = "github-oauth-login"
+type = "javascript"
+account_id = "7581888e76f44dfaf7fbfa46b8b15a12"
+workers_dev = true
+route = ""
+zone_id = ""

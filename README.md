@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rosea
 
-## Getting Started
+## Github OAuth Login Setup
 
-First, run the development server:
+1. [Create a GitHub OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
+1. [Create a Cloudflare account](https://dash.cloudflare.com/)
+1. Install the `wrangler` CLI and login with your account
+
+   ```
+   npm install --global @cloudflare/wrangler
+   wrangler login
+   ```
+
+1. Edit the `wrangler.toml` file, change the value for `account_id` to your own ([select your account](https://dash.cloudflare.com/), then find your Account ID in the workers tab)
+1. Add the following secrets to your Cloudflare worker:
+
+   - `CLIENT_ID`, `CLIENT_SECRET`: In your GitHub (OAuth) App's settings page, find `Client ID` and `Client SECRET`
+
+     ```
+     wrangler secret put CLIENT_ID
+     wrangler secret put CLIENT_SECRET
+     ```
+
+1. Add the following secret in your fork's repository settings:
+   - `CF_API_TOKEN`: [Create a new token](https://dash.cloudflare.com/profile/api-tokens), use the "Edit Cloudflare Workers" template
+1. Enable GitHub Pages in your repository settings, select `Source` to be the `master branch`.
+
+That should be it. The `github-oauth-login.js` file will be deployed to Cloudflare each time there is a commit to master.
+
+## Local Development
+
+Please ensure you are using the node version specified in the `.nvmrc` file.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

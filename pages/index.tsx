@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import homePageContent from "../data/homepage.json";
 
 const Home: NextPage = () => {
   return (
@@ -15,9 +16,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Project Rosea</h1>
+        <h1 className={styles.title}>{homePageContent.title}</h1>
 
-        <p className={styles.description}>A demonstration app.</p>
+        <p className={styles.description}>{homePageContent.description}</p>
       </main>
 
       <footer className={styles.footer}>
