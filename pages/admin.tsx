@@ -20,7 +20,9 @@ const Admin: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    setLoginStatus("logged-in");
+    if (apiToken.length > 0) {
+      setLoginStatus("logged-in");
+    }
   }, [apiToken]);
 
   async function login(code: string) {
@@ -67,7 +69,7 @@ const Admin: NextPage = () => {
               This page requires authentication to continue.
             </p>
 
-            <p className={styles.description}>
+            <p className={styles.login}>
               <a href="https://github-oauth-login.james-hancock6775.workers.dev">
                 Login with Github OAuth
               </a>
@@ -80,10 +82,6 @@ const Admin: NextPage = () => {
           </>
         )}
       </main>
-
-      <footer className={styles.footer}>
-        Powered by GitHub and Cloudflare
-      </footer>
     </div>
   );
 };

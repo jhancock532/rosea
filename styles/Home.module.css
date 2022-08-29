@@ -33,7 +33,13 @@
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 4rem 0 2rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.login {
+  text-decoration: underline;
+  font-size: 1.5rem;
+  color: rgb(53, 255, 107);
 }

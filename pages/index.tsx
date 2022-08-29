@@ -20,10 +20,6 @@ const Home: NextPage = () => {
 
         <p className={styles.description}>{homePageContent.description}</p>
       </main>
-
-      <footer className={styles.footer}>
-        Powered by GitHub and Cloudflare
-      </footer>
     </div>
   );
 };
