@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 import homePageContent from "../data/homepage.json";
+import Header from "../components/Header";
 
 const Home: NextPage = () => {
   return (
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header />
       <main className={styles.main}>
         <h1 className={styles.title}>{homePageContent.title}</h1>
 
