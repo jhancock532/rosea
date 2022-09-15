@@ -1,5 +1,7 @@
 # Rosea
 
+The SCSS setup: https://www.freecodecamp.org/news/how-to-use-sass-with-css-modules-in-next-js/
+
 ## Github OAuth Login Setup
 
 1. [Create a GitHub OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
