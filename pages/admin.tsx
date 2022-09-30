@@ -1,15 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 
 const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
-  const [loginStatus, setLoginStatus] = useState<"logged-out" | "logged-in">(
-    "logged-out"
-  );
+  const [loginStatus, setLoginStatus] =
+    useState<"logged-out" | "logged-in">("logged-out");
 
   useEffect(() => {
     const code = new URL(location.href).searchParams.get("code");
