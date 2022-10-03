@@ -96,4 +96,16 @@ async function getWebsiteData(apiToken: string) {
   return atob(websiteData.content);
 }
 
-export { getCommitHistory, getRootTreeFromMaster, getWebsiteData };
+async function commitWebsiteData(apiToken: string, websiteData: string) {
+  // Create a blob with the new website data, send this to the repository.
+  // Create a tree with the above blob sha (based on the equivalent master tree?)
+  // Create a commit with the tree
+  // Update the reference on master to the new commit (default is force push)
+}
+
+export {
+  getCommitHistory,
+  getRootTreeFromMaster,
+  getWebsiteData,
+  commitWebsiteData,
+};

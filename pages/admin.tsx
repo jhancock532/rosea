@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { ChangeEvent, useEffect, useState } from "react";
-import { getWebsiteData } from "../scripts/api";
+import { commitWebsiteData, getWebsiteData } from "../scripts/api";
 import styles from "../styles/Home.module.scss";
 
 const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
@@ -59,6 +59,15 @@ const Admin: NextPage = () => {
     }
   }
 
+  async function handleCommitWebsiteData() {
+    try {
+      const response = await commitWebsiteData(apiToken, websiteData);
+      console.log(response);
+    } catch {
+      alert("Error committing website data.");
+    }
+  }
+
   const updateWebsiteData = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setWebsiteData(event.target.value);
   };
@@ -92,13 +101,22 @@ const Admin: NextPage = () => {
         ) : (
           <>
             <p className={styles.description}>Successfully logged in.</p>
-            <p>{apiToken}</p>
             <button className={styles.button} onClick={() => loadWebsiteData()}>
               Load Website Data
             </button>
             {websiteData && (
-              <textarea value={websiteData} onChange={updateWebsiteData} />
+              <textarea
+                className={styles.textEditor}
+                value={websiteData}
+                onChange={updateWebsiteData}
+              />
             )}
+            <button
+              className={styles.button}
+              onClick={() => handleCommitWebsiteData()}
+            >
+              Commit Website Data
+            </button>
           </>
         )}
       </main>

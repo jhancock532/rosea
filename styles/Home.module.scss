@@ -45,8 +45,17 @@
 }
 
 .button {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  border-radius: 2px;
   padding: 1rem;
   background-color: white;
   color: black;
+}
+
+.textEditor {
+  font-size: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 600px;
+  height: 300px;
 }
