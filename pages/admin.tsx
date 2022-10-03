@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   getCommitHistory,
   getRootTreeFromMaster,
@@ -93,6 +93,10 @@ const Admin: NextPage = () => {
     </div>
   ));
 
+  const updateWebsiteData = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setWebsiteData(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -123,17 +127,10 @@ const Admin: NextPage = () => {
           <>
             <p className={styles.description}>Successfully logged in.</p>
             <p>{apiToken}</p>
-            <button onClick={() => loadCommitHistory()}>
-              Load Commit History
-            </button>
-            {commits.length > 0 && renderedCommits}
-            <button onClick={() => loadRepositoryTree()}>
-              Load Current Repository Tree
-            </button>
-            <button onClick={() => loadWebsiteData()}>
-              Load Current Repository Tree
-            </button>
-            {websiteData && <code>{websiteData}</code>}
+            <button onClick={() => loadWebsiteData()}>Load Website Data</button>
+            {websiteData && (
+              <textarea value={websiteData} onChange={updateWebsiteData} />
+            )}
           </>
         )}
       </main>
