@@ -32,8 +32,9 @@ async function getCommitHistory(apiToken: string) {
 }
 
 async function getTreeFromCommit(apiToken: string, commit: Commit) {
-  const latestCommitResponse = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/commits/${commit.sha}`,
+  // /branches/master
+  const latestMasterBranch = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/branches/master`,
     {
       headers: {
         accept: "application/vnd.github.v3+json",
@@ -42,14 +43,16 @@ async function getTreeFromCommit(apiToken: string, commit: Commit) {
     }
   );
 
-  const latestCommit = await latestCommitResponse.json();
+  const masterBranch = await latestMasterBranch.json();
 
-  if (latestCommit.error) {
-    return alert(JSON.stringify(latestCommit, null, 2));
+  if (masterBranch.error) {
+    return alert(JSON.stringify(masterBranch, null, 2));
   }
 
+  console.log(masterBranch);
+
   const rootTreeResponse = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/trees/${latestCommit.tree.sha}?recursive=yes`,
+    `https://api.github.com/repos/jhancock532/rosea/git/trees/${masterBranch.commit.sha}?recursive=yes`,
     {
       headers: {
         accept: "application/vnd.github.v3+json",
