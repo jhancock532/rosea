@@ -1,29 +1,17 @@
+import Link from "next/link";
 import React from "react";
 import styles from "./Header.module.scss";
 
-type User = {
-  name: string;
+type HeaderProps = {
+  title: string;
 };
 
-interface HeaderProps {
-  user?: User;
-}
-
-export const Header = ({ user }: HeaderProps) => (
-  <header>
-    <div className={styles.wrapper}>
-      <div>
-        <h1>Rosea</h1>
-      </div>
-      <div>
-        {user && (
-          <>
-            <span className={styles.welcome}>
-              Welcome, <b>{user.name}</b>!
-            </span>
-          </>
-        )}
-      </div>
-    </div>
+export const Header = ({ title }: HeaderProps) => (
+  <header className={styles.container}>
+    <p className={styles.title}>{title}</p>
+    {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+    <a href="/admin" className={styles.adminLink}>
+      Admin
+    </a>
   </header>
 );

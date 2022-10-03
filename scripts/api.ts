@@ -101,6 +101,45 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
   // Create a tree with the above blob sha (based on the equivalent master tree?)
   // Create a commit with the tree
   // Update the reference on master to the new commit (default is force push)
+
+  const masterHeadReferenceResponse = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/matching-refs/heads/master`,
+    {
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${apiToken}`,
+      },
+    }
+  );
+
+  const masterReference = await masterHeadReferenceResponse.json();
+  console.log(masterReference);
+}
+
+const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
+
+async function loginToGitHub(code: string) {
+  const path =
+    location.pathname +
+    location.search.replace(/\bcode=\w+/, "").replace(/\?$/, "");
+  history.pushState({}, "", path);
+
+  const response = await fetch(WORKER_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ code }),
+  });
+
+  const result = await response.json();
+
+  if (result.error) {
+    return alert(JSON.stringify(result, null, 2));
+  } else {
+    return result.token;
+  }
 }
 
 export {
@@ -108,4 +147,5 @@ export {
   getRootTreeFromMaster,
   getWebsiteData,
   commitWebsiteData,
+  loginToGitHub,
 };

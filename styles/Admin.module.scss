@@ -1,0 +1,21 @@
+$color-white: #fff;
+$color-black: #000;
+$grid: 20px;
+
+.splitContainer {
+  display: flex;
+}
+
+.editorContainer {
+  background-color: $color-white;
+  width: 50vw;
+  height: 100vh;
+  padding: $grid;
+}
+
+.previewContainer {
+  background-color: $color-white;
+  border-left: 4px solid #000;
+  width: 50vw;
+  height: 100vh;
+}

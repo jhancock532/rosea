@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1.5rem;
+}
+
+.input {
+  border: 2px solid $color-black;
+  font-size: 1.5rem;
+}
+
+.advice {
+  font-size: 1rem;
+}
