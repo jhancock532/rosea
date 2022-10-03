@@ -69,7 +69,7 @@ const Admin: NextPage = () => {
     }
   }
 
-  const renderedCommits = commits.splice(0, 10).map((commit) => (
+  const renderedCommits = commits.splice(0, 3).map((commit) => (
     <div key={commit.sha}>
       <p>
         <a href={commit.url}>{commit.message}</a>

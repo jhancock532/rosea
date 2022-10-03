@@ -34,7 +34,7 @@ async function getCommitHistory(apiToken: string) {
 async function getTreeFromCommit(apiToken: string, commit: Commit) {
   // /branches/master
   const latestMasterBranch = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/branches/master`,
+    `https://api.github.com/repos/jhancock532/rosea/branches/master`,
     {
       headers: {
         accept: "application/vnd.github.v3+json",
