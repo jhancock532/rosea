@@ -16,6 +16,7 @@ const Admin: NextPage = () => {
   const [commits, setCommits] = useState<Commit[]>([]);
   const [loginStatus, setLoginStatus] =
     useState<"logged-out" | "logged-in">("logged-out");
+  const [websiteData, setWebsiteData] = useState<string>("");
 
   useEffect(() => {
     const code = new URL(location.href).searchParams.get("code");
@@ -75,10 +76,10 @@ const Admin: NextPage = () => {
 
   async function loadWebsiteData() {
     try {
-      const tree = await getWebsiteData(apiToken);
-      console.log(tree);
+      const data = await getWebsiteData(apiToken);
+      setWebsiteData(data);
     } catch {
-      alert("Error loading data tree.");
+      alert("Error loading website data.");
     }
   }
 
@@ -132,6 +133,7 @@ const Admin: NextPage = () => {
             <button onClick={() => loadWebsiteData()}>
               Load Current Repository Tree
             </button>
+            {websiteData && <code>{websiteData}</code>}
           </>
         )}
       </main>

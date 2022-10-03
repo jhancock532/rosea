@@ -80,6 +80,20 @@ async function getWebsiteData(apiToken: string) {
 
   const dataTree = await dataTreeResponse.json();
   console.log(dataTree);
+
+  const websiteDataInformation = dataTree.tree.find(
+    (tree: any) => tree.path === "website.json"
+  );
+
+  const websiteDataResponse = await fetch(websiteDataInformation.url, {
+    headers: {
+      accept: "application/vnd.github.v3+json",
+      authorization: `token ${apiToken}`,
+    },
+  });
+  const websiteData = await websiteDataResponse.json();
+
+  return atob(websiteData.content);
 }
 
 export { getCommitHistory, getRootTreeFromMaster, getWebsiteData };
