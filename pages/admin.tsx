@@ -1,19 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { ChangeEvent, useEffect, useState } from "react";
-import {
-  getCommitHistory,
-  getRootTreeFromMaster,
-  getWebsiteData,
-} from "../scripts/api";
+import { getWebsiteData } from "../scripts/api";
 import styles from "../styles/Home.module.scss";
-import { Commit } from "../types/api";
 
 const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
-  const [commits, setCommits] = useState<Commit[]>([]);
   const [loginStatus, setLoginStatus] =
     useState<"logged-out" | "logged-in">("logged-out");
   const [websiteData, setWebsiteData] = useState<string>("");
@@ -56,24 +50,6 @@ const Admin: NextPage = () => {
     }
   }
 
-  async function loadCommitHistory() {
-    try {
-      const commits = await getCommitHistory(apiToken);
-      setCommits(commits);
-    } catch {
-      alert("Error loading commits.");
-    }
-  }
-
-  async function loadRepositoryTree() {
-    try {
-      const tree = await getRootTreeFromMaster(apiToken);
-      console.log(tree);
-    } catch {
-      alert("Error loading tree.");
-    }
-  }
-
   async function loadWebsiteData() {
     try {
       const data = await getWebsiteData(apiToken);
@@ -82,16 +58,6 @@ const Admin: NextPage = () => {
       alert("Error loading website data.");
     }
   }
-
-  const renderedCommits = commits.splice(0, 3).map((commit) => (
-    <div key={commit.sha}>
-      <p>
-        <a href={commit.url}>{commit.message}</a>
-      </p>
-      <p>By {commit.author}</p>
-      <small>{commit.sha}</small>
-    </div>
-  ));
 
   const updateWebsiteData = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setWebsiteData(event.target.value);
@@ -127,7 +93,9 @@ const Admin: NextPage = () => {
           <>
             <p className={styles.description}>Successfully logged in.</p>
             <p>{apiToken}</p>
-            <button onClick={() => loadWebsiteData()}>Load Website Data</button>
+            <button className={styles.button} onClick={() => loadWebsiteData()}>
+              Load Website Data
+            </button>
             {websiteData && (
               <textarea value={websiteData} onChange={updateWebsiteData} />
             )}
