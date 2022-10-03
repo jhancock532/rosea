@@ -1,5 +1,3 @@
-import { Commit } from "../types/api";
-
 async function getCommitHistory(apiToken: string) {
   const commitHistoryResponse = await fetch(
     "https://api.github.com/repos/jhancock532/rosea/commits",
@@ -31,7 +29,7 @@ async function getCommitHistory(apiToken: string) {
   return processedCommits;
 }
 
-async function getTreeFromCommit(apiToken: string, commit: Commit) {
+async function getRootTreeFromMaster(apiToken: string) {
   // /branches/master
   const latestMasterBranch = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/branches/master`,
@@ -52,7 +50,7 @@ async function getTreeFromCommit(apiToken: string, commit: Commit) {
   console.log(masterBranch);
 
   const rootTreeResponse = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/trees/${masterBranch.commit.sha}?recursive=yes`,
+    `https://api.github.com/repos/jhancock532/rosea/git/trees/${masterBranch.commit.sha}`,
     {
       headers: {
         accept: "application/vnd.github.v3+json",
@@ -67,4 +65,21 @@ async function getTreeFromCommit(apiToken: string, commit: Commit) {
   return rootTree;
 }
 
-export { getCommitHistory, getTreeFromCommit };
+async function getWebsiteData(apiToken: string) {
+  const rootTree = await getRootTreeFromMaster(apiToken);
+  const dataTreeInformation = rootTree.tree.find(
+    (tree: any) => tree.path === "data"
+  );
+
+  const dataTreeResponse = await fetch(dataTreeInformation.url, {
+    headers: {
+      accept: "application/vnd.github.v3+json",
+      authorization: `token ${apiToken}`,
+    },
+  });
+
+  const dataTree = await dataTreeResponse.json();
+  console.log(dataTree);
+}
+
+export { getCommitHistory, getRootTreeFromMaster, getWebsiteData };

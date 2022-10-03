@@ -1,7 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { getCommitHistory, getTreeFromCommit } from "../scripts/api";
+import {
+  getCommitHistory,
+  getRootTreeFromMaster,
+  getWebsiteData,
+} from "../scripts/api";
 import styles from "../styles/Home.module.scss";
 import { Commit } from "../types/api";
 
@@ -62,10 +66,19 @@ const Admin: NextPage = () => {
 
   async function loadRepositoryTree() {
     try {
-      const tree = await getTreeFromCommit(apiToken, commits[0]);
+      const tree = await getRootTreeFromMaster(apiToken);
       console.log(tree);
     } catch {
       alert("Error loading tree.");
+    }
+  }
+
+  async function loadWebsiteData() {
+    try {
+      const tree = await getWebsiteData(apiToken);
+      console.log(tree);
+    } catch {
+      alert("Error loading data tree.");
     }
   }
 
@@ -114,6 +127,9 @@ const Admin: NextPage = () => {
             </button>
             {commits.length > 0 && renderedCommits}
             <button onClick={() => loadRepositoryTree()}>
+              Load Current Repository Tree
+            </button>
+            <button onClick={() => loadWebsiteData()}>
               Load Current Repository Tree
             </button>
           </>
