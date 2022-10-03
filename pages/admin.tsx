@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { getCommitHistory, getTreeFromCommit } from "../scripts/api";
 import styles from "../styles/Home.module.scss";
+import { Commit } from "../types/api";
 
 const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
+  const [commits, setCommits] = useState<Commit[]>([]);
   const [loginStatus, setLoginStatus] =
     useState<"logged-out" | "logged-in">("logged-out");
 
@@ -48,6 +51,34 @@ const Admin: NextPage = () => {
     }
   }
 
+  async function loadCommitHistory() {
+    try {
+      const commits = await getCommitHistory(apiToken);
+      setCommits(commits);
+    } catch {
+      alert("Error loading commits.");
+    }
+  }
+
+  async function loadRepositoryTree() {
+    try {
+      const tree = await getTreeFromCommit(apiToken, commits[0]);
+      console.log(tree);
+    } catch {
+      alert("Error loading tree.");
+    }
+  }
+
+  const renderedCommits = commits.splice(0, 10).map((commit) => (
+    <div key={commit.sha}>
+      <p>
+        <a href={commit.url}>{commit.message}</a>
+      </p>
+      <p>By {commit.author}</p>
+      <small>{commit.sha}</small>
+    </div>
+  ));
+
   return (
     <div className={styles.container}>
       <Head>
@@ -78,6 +109,13 @@ const Admin: NextPage = () => {
           <>
             <p className={styles.description}>Successfully logged in.</p>
             <p>{apiToken}</p>
+            <button onClick={() => loadCommitHistory()}>
+              Load Commit History
+            </button>
+            {commits.length > 0 && renderedCommits}
+            <button onClick={() => loadRepositoryTree()}>
+              Load Current Repository Tree
+            </button>
           </>
         )}
       </main>
