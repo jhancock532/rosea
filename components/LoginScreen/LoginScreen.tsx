@@ -9,7 +9,7 @@ export const LoginScreen = () => (
     </p>
     <a
       className={styles.loginButton}
-      href="https://github-oauth-loginScreen.james-hancock6775.workers.dev"
+      href="https://github-oauth-login.james-hancock6775.workers.dev"
     >
       Login with Github OAuth
     </a>
