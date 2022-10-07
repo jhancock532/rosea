@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import { ChangeEvent, useEffect, useState } from "react";
-import HomePage from "../components/Pages";
+import HomePage from "../components/Pages/HomePage";
 import {
   commitWebsiteData,
   getWebsiteData,
   loginToGitHub,
 } from "../scripts/api";
-import styles from "../styles/Admin.module.scss";
+import styles from "../components/Pages/Admin/Admin.module.scss";
 import data from "../data/website.json";
 import LoginScreen from "../components/LoginScreen";
 

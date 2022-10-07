@@ -1,0 +1,19 @@
+.container {
+  padding: 0 $grid * 2;
+}
+
+.title {
+  @include font-size(l);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.description {
+  @include font-size(s);
+  margin: $grid 0 0 0;
+  line-height: 1.5;
+}
+
+.main {
+  padding: $grid * 2 0;
+}

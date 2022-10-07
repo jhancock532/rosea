@@ -1,5 +1,57 @@
-@mixin desktop() {
-  @media (max-width: 600px) {
-    @content;
+/**
+ * Media queries
+ * @include at-media(tablet) { ... }
+ * @include at-media(desktop) { ... }
+ * @include at-media(widescreen) { ... }
+*/
+@mixin at-media($queries...) {
+  @each $query in $queries {
+    @each $breakpoint in $breakpoints {
+      $name: nth($breakpoint, 1);
+      $declaration: nth($breakpoint, 2);
+
+      @if $query == $name and $declaration {
+        @media only screen and #{$declaration} {
+          @content;
+        }
+      }
+    }
   }
+}
+
+/**
+ * Responsive font sizing
+ * @include font-size(m);
+ * @include font-size(l);
+ */
+@mixin font-size($size) {
+  @if $size == null {
+    @warn 'Font size ‘#{$keyword}’ does not exist';
+  } @else {
+    $small-size: map-get($small-font-sizes, $size);
+    font-size: $small-size;
+
+    @include at-media(tablet) {
+      $medium-size: map-get($medium-font-sizes, $size);
+      font-size: $medium-size;
+    }
+
+    @include at-media(desktop) {
+      $large-size: map-get($large-font-sizes, $size);
+      font-size: $large-size;
+    }
+  }
+}
+
+// Hides content that is only meant to be read by screen reader users.
+@mixin sr-only() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

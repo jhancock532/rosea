@@ -9,12 +9,12 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  @include font-size(m);
   font-weight: bold;
 }
 
 .adminLink {
-  font-size: 1rem;
+  @include font-size(s);
   color: #005500;
 
   &:visited {

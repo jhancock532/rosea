@@ -1,1 +1,74 @@
+// Colors
 $color-white: #fff;
+$color-black: #000;
+
+// Font weights
+$weight--extrabold: 900;
+$weight--heavy: 800;
+$weight--bold: 700;
+$weight--semibold: 600;
+$weight--medium: 500;
+$weight--normal: 400;
+$weight--light: 100;
+
+// Font sizes
+$base-font-size: 1.8rem;
+$large-font-sizes: (
+  xxxxl: 10rem,
+  xxxl: 7rem,
+  xxl: 6.4rem,
+  mxl: 5rem,
+  xl: 4.5rem,
+  l: 3.8rem,
+  ml: 2.8rem,
+  m: 2.4rem,
+  s: 2rem,
+  xs: 1.8rem,
+  mxs: 1.6rem,
+  xxs: 1.4rem,
+  xxxs: 1.3rem,
+  xxxxs: 1.2rem,
+);
+
+$medium-font-sizes: (
+  xxxxl: 7rem,
+  xxxl: 6.5rem,
+  xxl: 5.2rem,
+  mxl: 4.4rem,
+  xl: 3.8rem,
+  l: 2.8rem,
+  ml: 2.6rem,
+  m: 2.2rem,
+  s: 2rem,
+  xs: 1.8rem,
+  mxs: 1.6rem,
+  xxs: 1.4rem,
+  xxxs: 1.3rem,
+  xxxxs: 1.2rem,
+);
+
+$small-font-sizes: (
+  xxxxl: 6rem,
+  xxxl: 4.5rem,
+  xxl: 3.2rem,
+  mxl: 3rem,
+  xl: 2.8rem,
+  l: 2.6rem,
+  ml: 2.4rem,
+  m: 2rem,
+  s: 1.8rem,
+  xs: 1.6rem,
+  mxs: 1.6rem,
+  xxs: 1.4rem,
+  xxxs: 1.3rem,
+  xxxxs: 1.2rem,
+);
+
+// Display and layout
+$site-width: 1440px;
+$grid: 20px;
+$breakpoints: (
+  "tablet" "(min-width: 599px)",
+  "desktop" "(min-width: 1023px)",
+  "widescreen" "(min-width: 1919px)"
+);
