@@ -14,20 +14,3 @@
   @include font-size(s);
   margin: 0;
 }
-
-.loginButton {
-  @include font-size(s);
-  display: block;
-  max-width: max-content;
-  background-color: #008800;
-  color: #fff;
-  padding: $grid * 0.75;
-
-  &:visited {
-    color: #fff;
-  }
-
-  &:focus {
-    outline: 4px solid black;
-  }
-}

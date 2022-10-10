@@ -1,0 +1,11 @@
+.button {
+  @include font-size(s);
+  display: block;
+  max-width: max-content;
+  padding: $grid * 0.75;
+
+  &:focus {
+    outline: 6px solid black;
+    outline-offset: 2px;
+  }
+}

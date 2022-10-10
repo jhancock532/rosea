@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import React from "react";
 import styles from "./LoginScreen.module.scss";
 
@@ -7,11 +8,12 @@ export const LoginScreen = () => (
     <p className={styles.notice}>
       This page requires authentication to continue.
     </p>
-    <a
-      className={styles.loginButton}
-      href="https://github-oauth-login.james-hancock6775.workers.dev"
+    <Button
+      variant="custom"
+      hue={60}
+      url="https://github-oauth-login.james-hancock6775.workers.dev"
     >
       Login with Github OAuth
-    </a>
+    </Button>
   </div>
 );
