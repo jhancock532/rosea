@@ -18,6 +18,9 @@ module.exports = {
             localIdentName: "[name]__[local]--[hash:base64:5]",
           },
         },
+        sassLoaderOptions: {
+          additionalData: `@use "sass:math"; @import "styles/variables.scss"; @import "styles/mixins.scss";`,
+        },
       },
     },
   ],

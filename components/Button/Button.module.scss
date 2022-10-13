@@ -1,8 +1,9 @@
 .button {
-  @include font-size(s);
+  @include font-size(xxs);
   display: block;
   max-width: max-content;
   padding: $grid * 0.75;
+  border: none;
 
   &:focus {
     outline: 6px solid black;
