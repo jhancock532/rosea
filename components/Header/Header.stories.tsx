@@ -7,12 +7,26 @@ export default {
   title: "Organisms/Header",
   component: Header,
   parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: "fullscreen",
+    backgrounds: {
+      values: [{ name: "white", value: "#fff" }],
+    },
   },
   args: {
     title: "Project Rosea",
   },
+  argTypes: {
+    title: {
+      name: "Title",
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: "3em" }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Header>;
 
 export const Default: ComponentStory<typeof Header> = (args) => (
