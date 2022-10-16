@@ -143,9 +143,9 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
             path: "data/website.json",
             mode: "100644", //The file mode, 100644 represents a blob
             type: "blob",
-            content: websiteData,
           },
         ],
+        content: websiteData,
       }),
     }
   ).then((res) => res.json());
