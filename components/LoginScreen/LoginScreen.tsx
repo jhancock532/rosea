@@ -9,8 +9,7 @@ export const LoginScreen = () => (
       This page requires authentication to continue.
     </p>
     <Button
-      variant="custom"
-      hue={60}
+      variant="green"
       url="https://github-oauth-login.james-hancock6775.workers.dev"
     >
       Login with Github OAuth
