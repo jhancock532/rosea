@@ -174,7 +174,7 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
   const currentTime = new Date().toLocaleString();
 
   const createNewCommit = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/refs/heads/master`,
+    `https://api.github.com/repos/jhancock532/rosea/git/commits`,
     {
       method: "POST",
       headers: {
