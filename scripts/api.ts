@@ -102,15 +102,17 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
   // Create a commit with the new tree SHA
   // Update the reference on master to the new commit (default is force push)
 
-  const masterReference = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/matching-refs/heads/master`,
-    {
-      headers: {
-        accept: "application/vnd.github.v3+json",
-        authorization: `token ${apiToken}`,
-      },
-    }
-  ).then((res) => res.json());
+  const masterReference = (
+    await fetch(
+      `https://api.github.com/repos/jhancock532/rosea/git/matching-refs/heads/master`,
+      {
+        headers: {
+          accept: "application/vnd.github.v3+json",
+          authorization: `token ${apiToken}`,
+        },
+      }
+    ).then((res) => res.json())
+  )[0];
 
   console.log(masterReference);
 
