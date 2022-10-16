@@ -131,6 +131,22 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
   console.log("Latest commit tree SHA");
   console.log(latestCommit.tree.sha);
 
+  const createNewBlob = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/blobs`,
+    {
+      method: "POST",
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${apiToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: websiteData }),
+    }
+  ).then((res) => res.json());
+
+  console.log("Latest blob");
+  console.log(createNewBlob);
+
   const createNewTree = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/git/trees`,
     {
@@ -146,7 +162,7 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
             path: "data/website.json",
             mode: "100644", //The file mode, 100644 represents a blob
             type: "blob",
-            content: websiteData,
+            sha: createNewBlob.sha,
           },
         ],
       }),
