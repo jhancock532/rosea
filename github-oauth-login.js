@@ -21,7 +21,7 @@ async function handle(request) {
   // redirect GET requests to the OAuth login page on github.com
   if (request.method === "GET") {
     return Response.redirect(
-      `https://github.com/login/oauth/authorize?client_id=${client_id}`,
+      `https://github.com/login/oauth/authorize?client_id=${client_id}&scope=repo`,
       302
     );
   }
