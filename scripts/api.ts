@@ -192,7 +192,7 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
   console.log(createNewCommit);
 
   const updateTheMasterReference = await fetch(
-    `https://api.github.com/repos/jhancock532/rosea/git/trees`,
+    `https://api.github.com/repos/jhancock532/rosea/git/refs/heads/master`,
     {
       method: "PATCH",
       headers: {
