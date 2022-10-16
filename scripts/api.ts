@@ -97,12 +97,12 @@ async function getWebsiteData(apiToken: string) {
 }
 
 async function commitWebsiteData(apiToken: string, websiteData: string) {
-  // Create a blob with the new website data, send this to the repository.
-  // Create a tree with the above blob sha (based on the equivalent master tree?)
-  // Create a commit with the tree
+  // Get the tree SHA from the latest commit on the master branch.
+  // Create a new tree based on the master tree, automatically creating a blob by passing in our content
+  // Create a commit with the new tree SHA
   // Update the reference on master to the new commit (default is force push)
 
-  const masterHeadReferenceResponse = await fetch(
+  const masterReference = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/git/matching-refs/heads/master`,
     {
       headers: {
@@ -110,10 +110,83 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
         authorization: `token ${apiToken}`,
       },
     }
-  );
+  ).then((res) => res.json());
 
-  const masterReference = await masterHeadReferenceResponse.json();
   console.log(masterReference);
+
+  const latestCommit = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/commits/${masterReference.object.sha}`,
+    {
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${apiToken}`,
+      },
+    }
+  ).then((res) => res.json());
+
+  console.log(latestCommit);
+
+  const createNewTree = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/trees`,
+    {
+      method: "POST",
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${apiToken}`,
+      },
+      body: JSON.stringify({
+        base_tree: latestCommit.tree.sha,
+        tree: [
+          {
+            path: "data/website.json",
+            mode: "100644", //The file mode, 100644 represents a blob
+            type: "blob",
+            content: websiteData,
+          },
+        ],
+      }),
+    }
+  ).then((res) => res.json());
+
+  console.log(createNewTree);
+
+  const currentTime = new Date().toLocaleString();
+
+  const createNewCommit = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/refs/heads/master`,
+    {
+      method: "POST",
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${apiToken}`,
+      },
+      body: JSON.stringify({
+        message: `Automated commit from live website: ${currentTime}`,
+        parents: [latestCommit.sha],
+        tree: createNewTree.sha,
+      }),
+    }
+  ).then((res) => res.json());
+
+  console.log(createNewCommit);
+
+  const updateTheMasterReference = await fetch(
+    `https://api.github.com/repos/jhancock532/rosea/git/trees`,
+    {
+      method: "PATCH",
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${apiToken}`,
+      },
+      body: JSON.stringify({
+        sha: createNewCommit.sha,
+      }),
+    }
+  ).then((res) => res.json());
+
+  console.log(updateTheMasterReference);
+
+  return updateTheMasterReference;
 }
 
 const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
