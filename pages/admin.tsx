@@ -9,6 +9,7 @@ import {
 import styles from "../components/Pages/Admin/Admin.module.scss";
 import data from "../data/website.json";
 import LoginScreen from "../components/LoginScreen";
+import Button from "components/Button";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
@@ -65,9 +66,9 @@ const Admin: NextPage = () => {
         ) : (
           <>
             <p className={styles.description}>Successfully logged in.</p>
-            <button className={styles.button} onClick={() => loadWebsiteData()}>
+            <Button variant="green" onClick={() => loadWebsiteData()}>
               Load Website Data
-            </button>
+            </Button>
             {websiteData && (
               <textarea
                 className={styles.textEditor}
@@ -75,12 +76,9 @@ const Admin: NextPage = () => {
                 onChange={updateWebsiteData}
               />
             )}
-            <button
-              className={styles.button}
-              onClick={() => handleCommitWebsiteData()}
-            >
+            <Button variant="red" onClick={() => handleCommitWebsiteData()}>
               Commit Website Data
-            </button>
+            </Button>
           </>
         )}
       </div>

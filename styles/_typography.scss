@@ -1,0 +1,6 @@
+@mixin body-text() {
+  @include font-size(m);
+  font-family: $font--primary;
+  line-height: 1.5;
+  margin: $grid 0;
+}

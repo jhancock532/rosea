@@ -23,8 +23,7 @@
 }
 
 .advice {
-  @include font-size(m);
+  @include body-text();
   color: $color--gray;
-  line-height: $body-line-height;
   margin: 0 0 $grid / 2 0;
 }

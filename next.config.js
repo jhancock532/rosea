@@ -7,7 +7,7 @@ const nextConfig = {
   sassOptions: {
     // allow all scss files access to these files
     includePaths: [path.join(__dirname, "styles")],
-    prependData: `@use "sass:math"; @import "variables.scss"; @import "mixins.scss";`,
+    prependData: `@use "sass:math"; @import "variables.scss"; @import "mixins.scss"; @import "typography.scss";`,
   },
 };
 

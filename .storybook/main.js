@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   stories: [
     "../components/**/*.stories.mdx",
@@ -19,7 +21,7 @@ module.exports = {
           },
         },
         sassLoaderOptions: {
-          additionalData: `@use "sass:math"; @import "styles/variables.scss"; @import "styles/mixins.scss";`,
+          additionalData: `@use "sass:math"; @import "styles/variables.scss"; @import "styles/mixins.scss"; @import "styles/typography.scss"; @import "styles/globals.scss";`,
         },
       },
     },
@@ -27,5 +29,12 @@ module.exports = {
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-webpack5",
+  },
+  webpackFinal: async (config) => {
+    config.resolve.alias["components"] = path.resolve(
+      __dirname,
+      "../components"
+    );
+    return config;
   },
 };
