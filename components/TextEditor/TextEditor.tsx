@@ -10,6 +10,7 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import TextEditorToolbar from "../TextEditorToolbar";
 import styles from "./TextEditor.module.scss";
+import { HeadingNode } from "@lexical/rich-text";
 
 const theme = {
   placeholder: styles.editorPlaceholder,
@@ -41,7 +42,7 @@ export const TextEditor = () => {
     namespace: "MyEditor",
     theme,
     onError,
-    nodes: [LinkNode, ListItemNode, ListNode],
+    nodes: [LinkNode, ListItemNode, ListNode, HeadingNode],
   };
 
   return (

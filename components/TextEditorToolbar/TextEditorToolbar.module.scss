@@ -2,13 +2,21 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: $grid / 2;
-  display: flex;
-  gap: $grid / 2;
+  padding: $grid * 0.5;
 }
 
 .button {
   @include font-size(m);
   border-radius: 0;
   border: 2px solid $color--black;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.rowOfOptions {
+  display: flex;
+  gap: $grid * 0.5;
+  padding-top: $grid * 0.5;
 }
