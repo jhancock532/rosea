@@ -65,7 +65,7 @@ async function getRootTreeFromMaster(apiToken: string) {
   return rootTree;
 }
 
-async function getWebsiteData(apiToken: string) {
+async function fetchFileFromRepository(apiToken: string) {
   const rootTree = await getRootTreeFromMaster(apiToken);
   const dataTreeInformation = rootTree.tree.find(
     (tree: any) => tree.path === "data"
@@ -96,11 +96,26 @@ async function getWebsiteData(apiToken: string) {
   return atob(websiteData.content);
 }
 
-async function commitWebsiteData(apiToken: string, websiteData: string) {
-  // Get the tree SHA from the latest commit on the master branch.
-  // Create a new tree based on the master tree, automatically creating a blob by passing in our content
-  // Create a commit with the new tree SHA
-  // Update the reference on master to the new commit (default is force push)
+/**
+ * Commits a file to the master branch of the current repository
+ * @param apiToken GitHub access token
+ * @param data JSON to be stored
+ * @param path File path to be overwritten "data/website.json"
+ * @returns `success` if commit succeeded
+ */
+async function commitFileToRepository(
+  apiToken: string,
+  data: string,
+  path: string
+) {
+  /*
+   1. Get master branch reference
+   2. Get the tree SHA from the latest commit on master
+   3. Create a new blob with the updated file data 
+   4. Create a new tree referencing the blob SHA
+   5. Create a new commit with the new tree SHA
+   6. Update the master branch reference to point to the new commit SHA
+  */
 
   const masterReference = (
     await fetch(
@@ -114,8 +129,6 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
     ).then((res) => res.json())
   )[0];
 
-  console.log(masterReference);
-
   const latestCommit = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/git/commits/${masterReference.object.sha}`,
     {
@@ -126,11 +139,6 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
     }
   ).then((res) => res.json());
 
-  console.log(latestCommit);
-
-  console.log("Latest commit tree SHA");
-  console.log(latestCommit.tree.sha);
-
   const createNewBlob = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/git/blobs`,
     {
@@ -140,12 +148,9 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
         authorization: `token ${apiToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ content: websiteData }),
+      body: JSON.stringify({ content: data }),
     }
   ).then((res) => res.json());
-
-  console.log("Latest blob");
-  console.log(createNewBlob);
 
   const createNewTree = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/git/trees`,
@@ -159,7 +164,7 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
         base_tree: latestCommit.tree.sha,
         tree: [
           {
-            path: "data/website.json",
+            path,
             mode: "100644", //The file mode, 100644 represents a blob
             type: "blob",
             sha: createNewBlob.sha,
@@ -168,8 +173,6 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
       }),
     }
   ).then((res) => res.json());
-
-  console.log(createNewTree);
 
   const currentTime = new Date().toLocaleString();
 
@@ -189,8 +192,6 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
     }
   ).then((res) => res.json());
 
-  console.log(createNewCommit);
-
   const updateTheMasterReference = await fetch(
     `https://api.github.com/repos/jhancock532/rosea/git/refs/heads/master`,
     {
@@ -205,9 +206,7 @@ async function commitWebsiteData(apiToken: string, websiteData: string) {
     }
   ).then((res) => res.json());
 
-  console.log(updateTheMasterReference);
-
-  return updateTheMasterReference;
+  return "success";
 }
 
 const WORKER_URL = "https://github-oauth-login.james-hancock6775.workers.dev";
@@ -239,7 +238,7 @@ async function loginToGitHub(code: string) {
 export {
   getCommitHistory,
   getRootTreeFromMaster,
-  getWebsiteData,
-  commitWebsiteData,
+  fetchFileFromRepository,
+  commitFileToRepository,
   loginToGitHub,
 };

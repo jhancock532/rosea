@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import { ChangeEvent, useEffect, useState } from "react";
 import HomePage from "../components/Pages/HomePage";
 import {
-  commitWebsiteData,
-  getWebsiteData,
+  commitFileToRepository,
+  fetchFileFromRepository,
   loginToGitHub,
 } from "../scripts/api";
 import styles from "../components/Pages/Admin/Admin.module.scss";
@@ -38,7 +38,7 @@ const Admin: NextPage = () => {
 
   async function loadWebsiteData() {
     try {
-      const data = await getWebsiteData(apiToken);
+      const data = await fetchFileFromRepository(apiToken);
       setWebsiteData(data);
     } catch {
       alert("Error loading website data.");
@@ -47,7 +47,11 @@ const Admin: NextPage = () => {
 
   async function handleCommitWebsiteData() {
     try {
-      const response = await commitWebsiteData(apiToken, websiteData);
+      const response = await commitFileToRepository(
+        apiToken,
+        websiteData,
+        "data/website.json"
+      );
       console.log(response);
     } catch {
       alert("Error committing website data.");
