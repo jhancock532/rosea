@@ -1,0 +1,53 @@
+.editorContainer {
+  position: relative;
+  border: 2px solid $color--black;
+  padding: $grid;
+  min-width: 600px;
+  color: $color--black;
+  text-align: left;
+
+  ::selection {
+    color: #000;
+    background: #cfc;
+  }
+}
+
+.editorInput {
+  @include font-size(m);
+  min-height: 250px;
+  resize: none;
+  caret-color: #050;
+  tab-size: 1;
+  outline: 0;
+}
+
+.editorPlaceholder {
+  @include font-size(m);
+  color: $color--gray;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: $grid + 3px;
+  left: $grid;
+
+  user-select: none;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.editorParagraph {
+  margin: 0 0 10px 0;
+  position: relative;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}

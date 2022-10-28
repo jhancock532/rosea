@@ -1,0 +1,14 @@
+.toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: $grid / 2;
+  display: flex;
+  gap: $grid / 2;
+}
+
+.button {
+  @include font-size(m);
+  border-radius: 0;
+  border: 2px solid $color--black;
+}
