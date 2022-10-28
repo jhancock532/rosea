@@ -1,17 +1,30 @@
 .container {
   display: flex;
   flex-direction: column;
+  font-family: $font--primary;
 }
 
 .label {
-  font-size: 1.5rem;
+  @include font-size(m);
+  margin-bottom: $grid / 2;
 }
 
 .input {
-  border: 2px solid $color-black;
-  font-size: 1.5rem;
+  @include font-size(m);
+  border: 2px solid $color--gray;
+  border-radius: $border-radius-small;
+  width: 100%;
+  padding: 4px;
+
+  &:focus {
+    outline: 4px solid $color--green;
+    border-color: $color--green;
+  }
 }
 
 .advice {
-  font-size: 1rem;
+  @include font-size(m);
+  color: $color--gray;
+  line-height: $body-line-height;
+  margin: 0 0 $grid / 2 0;
 }
