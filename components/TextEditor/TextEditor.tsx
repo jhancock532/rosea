@@ -1,4 +1,4 @@
-import { $getRoot, $getSelection } from "lexical";
+import { EditorState, LexicalEditor } from "lexical";
 import { LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
@@ -11,6 +11,7 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import TextEditorToolbar from "../TextEditorToolbar";
 import styles from "./TextEditor.module.scss";
 import { HeadingNode } from "@lexical/rich-text";
+import { $generateHtmlFromNodes } from "@lexical/html";
 
 const theme = {
   placeholder: styles.editorPlaceholder,
@@ -23,13 +24,15 @@ const theme = {
   },
 };
 
-function onChange(editorState: any) {
+function handleChange(
+  editorState: EditorState,
+  editor: LexicalEditor,
+  setOutputHTML: any
+) {
   editorState.read(() => {
-    // Read the contents of the EditorState here.
-    const root = $getRoot();
-    const selection = $getSelection();
+    const htmlString = $generateHtmlFromNodes(editor);
 
-    console.log(root, selection);
+    setOutputHTML(htmlString);
   });
 }
 
@@ -37,7 +40,11 @@ function onError(error: any) {
   console.error(error);
 }
 
-export const TextEditor = () => {
+type TextEditorProps = {
+  setOutputHTML?: (html: string) => void;
+};
+
+export const TextEditor = ({ setOutputHTML }: TextEditorProps) => {
   const initialConfig = {
     namespace: "MyEditor",
     theme,
@@ -55,7 +62,11 @@ export const TextEditor = () => {
           }
         />
         <TextEditorToolbar />
-        <OnChangePlugin onChange={onChange} />
+        <OnChangePlugin
+          onChange={(editorState: EditorState, editor: LexicalEditor) =>
+            handleChange(editorState, editor, setOutputHTML)
+          }
+        />
         <ListPlugin />
         <LinkPlugin />
         <HistoryPlugin />

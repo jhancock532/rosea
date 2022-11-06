@@ -10,6 +10,7 @@ import styles from "../components/Pages/Admin/Admin.module.scss";
 import data from "../data/website.json";
 import LoginScreen from "../components/LoginScreen";
 import Button from "components/Button";
+import TextEditor from "components/TextEditor";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
@@ -35,6 +36,12 @@ const Admin: NextPage = () => {
       setLoginStatus("logged-in");
     }
   }, [apiToken]);
+
+  const setEditorContent = (html: string) => {
+    const data = JSON.parse(websiteData);
+    data.content.richtext = html;
+    setWebsiteData(JSON.stringify(data));
+  };
 
   async function loadWebsiteData() {
     try {
@@ -83,6 +90,7 @@ const Admin: NextPage = () => {
             <Button variant="red" onClick={() => handleCommitWebsiteData()}>
               Commit Website Data
             </Button>
+            <TextEditor setOutputHTML={setEditorContent} />
           </>
         )}
       </div>

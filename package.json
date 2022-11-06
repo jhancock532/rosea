@@ -11,6 +11,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@lexical/html": "^0.6.0",
     "@lexical/react": "^0.5.0",
     "@storybook/preset-scss": "^1.0.3",
     "lexical": "^0.5.0",

@@ -8,6 +8,7 @@
   },
   "content": {
     "title": "Welcome to Project Rosea",
-    "introduction": "A Next.js website integrated with the GitHub API!"
+    "introduction": "A Next.js website integrated with the GitHub API!",
+    "richtext": "<p></p>"
   }
 }

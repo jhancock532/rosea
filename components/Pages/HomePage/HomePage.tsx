@@ -19,6 +19,7 @@ const HomePage = ({ data }: PageProps) => {
       <main className={styles.main}>
         <h1 className={styles.title}>{data.content.title}</h1>
         <p className={styles.description}>{data.content.introduction}</p>
+        <div dangerouslySetInnerHTML={{ __html: data.content.richtext }} />
       </main>
       <Footer message="Thanks for visiting." />
     </div>

@@ -10,6 +10,7 @@ type Metadata = {
 type Content = {
   title: string;
   introduction: string;
+  richtext: string;
 };
 
 export type Page = {
