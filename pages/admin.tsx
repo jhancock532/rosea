@@ -95,7 +95,7 @@ const Admin: NextPage = () => {
         )}
       </div>
       <div className={styles.previewContainer}>
-        <HomePage data={JSON.parse(websiteData)} />
+        <HomePage data={websiteData ? JSON.parse(websiteData) : data} />
       </div>
     </div>
   );

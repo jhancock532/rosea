@@ -1,1 +1,14 @@
-{"settings":{"siteName":"Rosea"},"metadata":{"title":"Welcome to Project Rosea","description":"A Next.js website integrated with the GitHub API."},"content":{"title":"Welcome to Project Rosea","introduction":"A Next.js website integrated with the GitHub API!","richtext":"<p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><span>Hello world!</span></p>"}}
+{
+  "settings": {
+    "siteName": "Rosea"
+  },
+  "metadata": {
+    "title": "Welcome to Project Rosea",
+    "description": "A Next.js website integrated with the GitHub API."
+  },
+  "content": {
+    "title": "Welcome to Project Rosea",
+    "introduction": "A Next.js website integrated with the GitHub API!",
+    "richtext": "<p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><span>Hello world!</span></p>"
+  }
+}
