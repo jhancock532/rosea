@@ -8,9 +8,11 @@ import {
 } from "../scripts/api";
 import styles from "../components/Pages/Admin/Admin.module.scss";
 import data from "../data/website.json";
+import contentTypes from "../data/contentTypes.json";
 import LoginScreen from "../components/LoginScreen";
 import Button from "components/Button";
 import TextEditor from "components/TextEditor";
+import Editor from "components/Editor";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
@@ -73,7 +75,10 @@ const Admin: NextPage = () => {
     <div className={styles.splitContainer}>
       <div className={styles.editorContainer}>
         {loginStatus === "logged-out" ? (
-          <LoginScreen />
+          <>
+            <LoginScreen />
+            <Editor configuration={contentTypes.page.homepage} />
+          </>
         ) : (
           <>
             <p className={styles.description}>Successfully logged in.</p>

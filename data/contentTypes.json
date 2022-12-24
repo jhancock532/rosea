@@ -1,0 +1,83 @@
+{
+  "atomic": {
+    "plaintext": {
+      "name": "Plain Text",
+      "label": "plaintext",
+      "type": "string",
+      "config": {
+        "title": "string",
+        "description": "string",
+        "maxLength": "number"
+      }
+    },
+    "richtext": {
+      "name": "Rich Text",
+      "label": "richtext",
+      "type": "json",
+      "config": {
+        "title": "string",
+        "description": "string",
+        "headings": "h1, h2, h3, h4, h5, h6",
+        "formatting": "bold, italic, strikethrough, highlight"
+      }
+    }
+  },
+  "compound": {
+    "metadata": {
+      "config": {
+        "type": "config",
+        "title": "Metadata",
+        "description": "Configure how the site gets displayed on other social media sites."
+      },
+      "title": {
+        "type": "plaintext",
+        "config": {
+          "title": "Title",
+          "maxLength": 80
+        }
+      },
+      "description": {
+        "type": "plaintext",
+        "config": {
+          "title": "Description",
+          "maxLength": 200
+        }
+      }
+    }
+  },
+  "page": {
+    "homepage": {
+      "config": {
+        "type": "config",
+        "title": "Homepage",
+        "description": "Use this page to edit all the homepage contents."
+      },
+      "metadata": {
+        "type": "metadata"
+      },
+      "title": {
+        "type": "plaintext",
+        "config": {
+          "title": "Webpage title",
+          "format": "short",
+          "maxLength": 50
+        }
+      },
+      "description": {
+        "type": "plaintext",
+        "config": {
+          "title": "Introduction text",
+          "description": "Try to keep this short; a single sentence to hook the reader.",
+          "format": "long",
+          "maxLength": 250
+        }
+      },
+      "content": {
+        "type": "richtext",
+        "config": {
+          "title": "Main contents"
+        }
+      }
+    }
+  }
+}
