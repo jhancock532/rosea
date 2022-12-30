@@ -2,7 +2,7 @@ import { Page, PageLink } from "types/pages";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import Metadata from "components/Metadata";
-import styles from "../HomePage/Homepage.module.scss";
+import styles from "./..HomePage/HomePage.module.scss";
 
 type PageProps = {
   data: Page;
