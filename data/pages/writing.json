@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "title": "Welcome to the writing section",
+    "description": "A Next.js website integrated with the GitHub API."
+  },
+  "content": {
+    "title": "Writing Posts Index",
+    "introduction": "A list of all the posts in the `data/pages/writing` folder.",
+    "richtext": "<p>Some text here.</p>"
+  }
+}

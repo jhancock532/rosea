@@ -12,14 +12,6 @@ export default {
       values: [{ name: "white", value: "#fff" }],
     },
   },
-  args: {
-    title: "Project Rosea",
-  },
-  argTypes: {
-    title: {
-      name: "Title",
-    },
-  },
   decorators: [
     (Story) => (
       <div style={{ padding: "3em" }}>
@@ -29,6 +21,4 @@ export default {
   ],
 } as ComponentMeta<typeof Header>;
 
-export const Default: ComponentStory<typeof Header> = (args) => (
-  <Header {...args} />
-);
+export const Default: ComponentStory<typeof Header> = (args) => <Header />;

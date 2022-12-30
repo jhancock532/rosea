@@ -7,7 +7,7 @@ import {
   loginToGitHub,
 } from "../scripts/api";
 import styles from "../components/Pages/Admin/Admin.module.scss";
-import data from "../data/website.json";
+import data from "../data/pages/index.json";
 import contentTypes from "../data/contentTypes.json";
 import LoginScreen from "../components/LoginScreen";
 import Button from "components/Button";
