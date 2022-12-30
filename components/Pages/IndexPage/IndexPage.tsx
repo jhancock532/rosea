@@ -2,7 +2,6 @@ import { Page, PageLink } from "types/pages";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import Metadata from "components/Metadata";
-import styles from "./..HomePage/HomePage.module.scss";
 
 type PageProps = {
   data: Page;
@@ -20,15 +19,15 @@ export const IndexPage = ({ data, pageLinks }: PageProps) => {
   ));
 
   return (
-    <div className={styles.container}>
+    <div>
       <Metadata
         title={data.metadata.title}
         description={data.metadata.description}
       />
       <Header />
-      <main className={styles.main}>
-        <h1 className={styles.title}>{data.content.title}</h1>
-        <p className={styles.description}>{data.content.introduction}</p>
+      <main>
+        <h1>{data.content.title}</h1>
+        <p>{data.content.introduction}</p>
         {indexList}
       </main>
       <Footer />
