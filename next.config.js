@@ -9,6 +9,9 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
     prependData: `@use "sass:math"; @import "variables.scss"; @import "mixins.scss"; @import "typography.scss";`,
   },
+  env: {
+    GITHUB_PERSONAL_ACCESS_TOKEN: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+  },
 };
 
 module.exports = nextConfig;

@@ -23,6 +23,12 @@ const Admin: NextPage = () => {
   const { editorContents, setEditorContents } = useEditorContext();
 
   useEffect(() => {
+    if (process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
+      setApiToken(process.env.GITHUB_PERSONAL_ACCESS_TOKEN);
+      setLoginStatus("logged-in");
+      return;
+    }
+
     const code = new URL(location.href).searchParams.get("code");
 
     async function login(code: string) {
@@ -55,7 +61,7 @@ const Admin: NextPage = () => {
       );
       setWebsiteData(data);
       setEditorContents((draft: any) => {
-        draft.data = data;
+        draft.data = JSON.parse(data);
       });
     } catch {
       alert("Error loading website data.");
