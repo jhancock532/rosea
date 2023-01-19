@@ -65,35 +65,20 @@ async function getRootTreeFromMaster(apiToken: string) {
   return rootTree;
 }
 
-async function fetchFileFromRepository(apiToken: string) {
-  const rootTree = await getRootTreeFromMaster(apiToken);
-  const dataTreeInformation = rootTree.tree.find(
-    (tree: any) => tree.path === "data"
-  );
+async function fetchFileFromRepository(apiToken: string, filePath: string) {
+  const fetchURL = `https://api.github.com/repos/jhancock532/rosea/contents/${filePath}`;
 
-  const dataTreeResponse = await fetch(dataTreeInformation.url, {
+  const fileResponse = await fetch(fetchURL, {
     headers: {
       accept: "application/vnd.github.v3+json",
       authorization: `token ${apiToken}`,
     },
   });
 
-  const dataTree = await dataTreeResponse.json();
-  console.log(dataTree);
+  const file = await fileResponse.json();
+  console.log(file);
 
-  const websiteDataInformation = dataTree.tree.find(
-    (tree: any) => tree.path === "website.json"
-  );
-
-  const websiteDataResponse = await fetch(websiteDataInformation.url, {
-    headers: {
-      accept: "application/vnd.github.v3+json",
-      authorization: `token ${apiToken}`,
-    },
-  });
-  const websiteData = await websiteDataResponse.json();
-
-  return atob(websiteData.content);
+  return atob(file.content);
 }
 
 /**

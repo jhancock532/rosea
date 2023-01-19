@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import HomePage from "../components/Pages/HomePage";
 import {
   commitFileToRepository,
@@ -13,12 +13,14 @@ import LoginScreen from "../components/LoginScreen";
 import Button from "components/Button";
 import TextEditor from "components/TextEditor";
 import Editor from "components/Editor";
+import { useEditorContext } from "context/editor";
 
 const Admin: NextPage = () => {
   const [apiToken, setApiToken] = useState<string>("");
   const [loginStatus, setLoginStatus] =
     useState<"logged-out" | "logged-in">("logged-out");
   const [websiteData, setWebsiteData] = useState<string>("");
+  const { editorContents, setEditorContents } = useEditorContext();
 
   useEffect(() => {
     const code = new URL(location.href).searchParams.get("code");
@@ -39,7 +41,7 @@ const Admin: NextPage = () => {
     }
   }, [apiToken]);
 
-  const setEditorContent = (html: string) => {
+  const setTextEditorContent = (html: string) => {
     const data = JSON.parse(websiteData);
     data.content.richtext = html;
     setWebsiteData(JSON.stringify(data));
@@ -47,8 +49,14 @@ const Admin: NextPage = () => {
 
   async function loadWebsiteData() {
     try {
-      const data = await fetchFileFromRepository(apiToken);
+      const data = await fetchFileFromRepository(
+        apiToken,
+        "data/pages/index.json"
+      );
       setWebsiteData(data);
+      setEditorContents((draft: any) => {
+        draft.data = data;
+      });
     } catch {
       alert("Error loading website data.");
     }
@@ -95,7 +103,7 @@ const Admin: NextPage = () => {
             <Button variant="red" onClick={() => handleCommitWebsiteData()}>
               Commit Website Data
             </Button>
-            <TextEditor setOutputHTML={setEditorContent} />
+            <TextEditor setOutputHTML={setTextEditorContent} />
           </>
         )}
       </div>

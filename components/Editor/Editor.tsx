@@ -58,6 +58,7 @@ export const Editor = ({ configuration, setConfiguration }: EditorProps) => {
             return (
               <Editor
                 configuration={contentTypes.compound[value.type as "metadata"]}
+                key={`editor-input-${index}`}
               />
             );
       }
