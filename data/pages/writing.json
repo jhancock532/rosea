@@ -5,7 +5,7 @@
   },
   "content": {
     "title": "Writing Posts Index",
-    "introduction": "A list of all the posts in the `data/pages/writing` folder.",
+    "introduction": "A list of all the posts in the { data/pages/writing } folder.",
     "richtext": "<p>Some text here.</p>"
   }
 }

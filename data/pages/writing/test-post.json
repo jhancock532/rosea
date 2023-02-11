@@ -6,6 +6,6 @@
   "content": {
     "title": "Welcome to the test post",
     "introduction": "You can load these posts and create new pages via the GitHub api in the /admin/ route (soon)",
-    "richtext": "<p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><span>Hello world!</span></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><span>This content was written in the lexical editor.</span></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><strong class=\"TextEditor_bold__Up7Tc\">That's bold!</strong></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\" style=\"text-indent: 20px;\"><em class=\"TextEditor_italic__8Oh_V\">Or perhaps a bit slanted to the right. </em></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\" style=\"text-indent: 40px;\"><span>Love that indent.</span></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\" style=\"text-align: center;\"><span>Aligned all the way to the center</span></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\" style=\"text-align: right;\"><span>Let's go to the right?</span></p><h2><span>The title styles need work!</span></h2><ul><li value=\"1\"><span>A list of bullet points</span></li><li value=\"2\"><span>Another bullet point!</span></li><li value=\"3\"><span>What's up with all these bullet points?</span></li></ul><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><br></p><p class=\"TextEditor_editorParagraph__LUruf\" dir=\"ltr\"><br></p>"
+    "richtext": "<p>Hello world!</p>"
   }
 }
