@@ -1,23 +1,50 @@
 .container {
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  @include core-grid();
+  padding: $grid 0;
 
+  @include at-media(desktop) {
+    padding-top: $grid * 2;
+  }
+}
+
+.navigation {
+  grid-column-start: content-start;
+  grid-column-end: content-end;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: $grid;
+
+  @include at-media(desktop) {
+    align-items: center;
+    gap: $grid * 2;
+  }
 }
 
 .title {
   @include font-size(m);
-  font-weight: bold;
+  margin: 0;
+  font-weight: 900;
+  text-decoration: none;
+
+  &,
+  &:visited {
+    color: $color--black;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-.adminLink {
+.link {
   @include font-size(s);
-  color: #005500;
+  color: $color--dark-green;
 
   &:visited {
-    color: #005500;
+    color: $color--dark-green;
+  }
+
+  &:hover {
+    color: $color--green;
   }
 }

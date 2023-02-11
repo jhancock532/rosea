@@ -1,5 +1,6 @@
 import { useSettingsContext } from "context/settings";
 import React from "react";
+import Link from "next/link";
 import styles from "./Header.module.scss";
 
 export const Header = () => {
@@ -7,13 +8,17 @@ export const Header = () => {
 
   return (
     <header className={styles.container}>
-      <p className={styles.title}>{settings?.siteName}</p>
-      <a href="/rosea/writing" className={styles.adminLink}>
-        Writing
-      </a>
-      <a href="/rosea/admin" className={styles.adminLink}>
-        Admin
-      </a>
+      <nav className={styles.navigation}>
+        <Link href="/" className={styles.title}>
+          {settings?.siteName}
+        </Link>
+        <Link href="/rosea/writing" className={styles.link}>
+          Writing
+        </Link>
+        <Link href="/rosea/admin" className={styles.link}>
+          Admin
+        </Link>
+      </nav>
     </header>
   );
 };
