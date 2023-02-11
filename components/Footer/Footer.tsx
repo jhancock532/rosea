@@ -6,13 +6,13 @@ export const Footer = () => {
   const settings = useSettingsContext();
   return (
     <footer className={styles.container}>
-      <p className={styles.message}>{settings?.footer.message}</p>
-      <p className={styles.message}>
-        <a href="https://github.com/jhancock532/rosea">
-          Fork this project on Github
-        </a>
-        .
-      </p>
+      <div className={styles.message}>
+        <p>{settings?.footer.message}</p>
+        <p>
+          The source code of this site is available{" "}
+          <a href="https://github.com/jhancock532/rosea">on Github</a>.
+        </p>
+      </div>
     </footer>
   );
 };

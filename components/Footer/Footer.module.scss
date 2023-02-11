@@ -1,9 +1,11 @@
 .container {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  @include core-grid();
   padding: $grid 0;
 }
 
 .message {
   @include font-size(s);
-  color: $color--gray;
+  font-weight: 300;
+  grid-column-start: content-start;
+  grid-column-end: content-end;
 }
