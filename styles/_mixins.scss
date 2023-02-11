@@ -55,3 +55,28 @@
   white-space: nowrap;
   border: 0;
 }
+
+// The core grid used for layout throughout the site
+@mixin core-grid() {
+  @include at-media(desktop) {
+    display: grid;
+    grid-template-columns:
+      [container-start] 80px
+      [breakout-start] $content-breakout-space
+      [content-start] calc(115ch)
+      [content-end] $content-breakout-space
+      [breakout-end] 1fr
+      [container-end];
+  }
+}
+
+@mixin rich-text() {
+  p,
+  li {
+    @include body-text();
+  }
+
+  h2 {
+    @include h2-title();
+  }
+}

@@ -1,9 +1,10 @@
 // Colors
 $color--white: #fff;
-$color--gray: #666666; //hsl(0, 0, 40%);
+$color--grey: #666666; //hsl(0, 0, 40%);
 $color--light-gray: #ddd;
 $color--black: #000;
 $color--green: #008800; // hsl(120, 100%, 27%);
+$color--dark-green: #005500;
 $color--blue: #000088; // hue 240
 $color--red: #880000; // hue
 
@@ -27,12 +28,12 @@ $weight--light: 100;
 // Font sizes
 $base-font-size: 1.8rem;
 $large-font-sizes: (
-  xxxxl: 10rem,
-  xxxl: 7rem,
-  xxl: 6.4rem,
-  mxl: 5rem,
-  xl: 4.5rem,
-  l: 3.8rem,
+  xxxxl: 6rem,
+  xxxl: 5rem,
+  xxl: 4.4rem,
+  mxl: 3.6rem,
+  xl: 3.3rem,
+  l: 3rem,
   ml: 2.8rem,
   m: 2.4rem,
   s: 2rem,
@@ -44,11 +45,11 @@ $large-font-sizes: (
 );
 
 $medium-font-sizes: (
-  xxxxl: 7rem,
-  xxxl: 6.5rem,
-  xxl: 5.2rem,
-  mxl: 4.4rem,
-  xl: 3.8rem,
+  xxxxl: 6rem,
+  xxxl: 5rem,
+  xxl: 4rem,
+  mxl: 3.8rem,
+  xl: 3.3rem,
   l: 2.8rem,
   ml: 2.6rem,
   m: 2.2rem,
@@ -80,6 +81,7 @@ $small-font-sizes: (
 // Display and layout
 $site-width: 1440px;
 $grid: 20px;
+$content-breakout-space: $grid * 2;
 $breakpoints: (
   "tablet" "(min-width: 599px)",
   "desktop" "(min-width: 1023px)",
