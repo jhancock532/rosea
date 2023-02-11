@@ -1,0 +1,48 @@
+.pageContainer {
+  padding: 0 $grid * 2;
+}
+
+.introduction {
+  grid-column-start: content-start;
+  grid-column-end: content-end;
+}
+
+.title {
+  @include h1-title();
+}
+
+.description {
+  @include font-size(m);
+  margin: $grid 0 0 0;
+  line-height: 1.5;
+}
+
+.webpageList {
+  grid-column-start: content-start;
+  grid-column-end: content-end;
+}
+
+.blogContainer {
+  @include core-grid();
+  padding: $grid 0;
+
+  @include at-media(desktop) {
+    padding-top: $grid * 4;
+    padding-bottom: $grid * 2;
+  }
+}
+
+.pageCard {
+  margin-top: $grid * 2;
+  @include at-media(desktop) {
+    margin-top: $grid * 3;
+  }
+}
+
+.pageTitle {
+  @include h3-title();
+}
+
+.pageContent {
+  @include body-text();
+}

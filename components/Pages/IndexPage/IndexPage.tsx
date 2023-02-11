@@ -1,7 +1,6 @@
 import { Page, PageLink } from "types/pages";
-import Header from "components/Header";
-import Footer from "components/Footer";
 import Metadata from "components/Metadata";
+import styles from "./IndexPage.module.scss";
 
 type PageProps = {
   data: Page;
@@ -10,11 +9,12 @@ type PageProps = {
 
 export const IndexPage = ({ data, pageLinks }: PageProps) => {
   const indexList = pageLinks.map((page: PageLink, index: number) => (
-    <div key={`page-link--${index}`}>
+    <div className={styles.pageCard} key={`page-link--${index}`}>
+      <hr />
       <a href={page.url}>
-        <h2>{page.title}</h2>
-        <p>{page.introduction}</p>
+        <h2 className={styles.pageTitle}>{page.title}</h2>
       </a>
+      <p className={styles.pageContent}>{page.introduction}</p>
     </div>
   ));
 
@@ -24,13 +24,13 @@ export const IndexPage = ({ data, pageLinks }: PageProps) => {
         title={data.metadata.title}
         description={data.metadata.description}
       />
-      <Header />
-      <main>
-        <h1>{data.content.title}</h1>
-        <p>{data.content.introduction}</p>
-        {indexList}
+      <main className={styles.blogContainer}>
+        <div className={styles.introduction}>
+          <h1 className={styles.title}>{data.content.title}</h1>
+          <p className={styles.description}>{data.content.introduction}</p>
+        </div>
+        <div className={styles.webpageList}>{indexList}</div>
       </main>
-      <Footer />
     </div>
   );
 };
