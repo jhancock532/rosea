@@ -32,7 +32,7 @@ const RichtextInput = ({ config }: RichtextInputProps) => {
   );
 };
 
-export const Editor = ({ configuration, setConfiguration }: EditorProps) => {
+const RecursiveEditor = ({ configuration }: EditorProps) => {
   const editorOptions = Object.entries(configuration).map(
     ([key, value]: [string, any], index) => {
       switch (value.type) {
@@ -56,7 +56,7 @@ export const Editor = ({ configuration, setConfiguration }: EditorProps) => {
         default:
           if (value.type === "metadata")
             return (
-              <Editor
+              <RecursiveEditor
                 configuration={contentTypes.compound[value.type as "metadata"]}
                 key={`editor-input-${index}`}
               />
@@ -73,9 +73,17 @@ export const Editor = ({ configuration, setConfiguration }: EditorProps) => {
           <strong>{configuration.config.title}</strong>
           <p>{configuration.config.description}</p>
         </summary>
-
         {editorOptions}
       </details>
+    </div>
+  );
+};
+
+export const Editor = ({ configuration, setConfiguration }: EditorProps) => {
+  return (
+    <div>
+      <h2>An example editor</h2>
+      <RecursiveEditor configuration={configuration} />
     </div>
   );
 };
