@@ -4,11 +4,11 @@ import { Page, PageLink } from "types/pages";
 import { IndexPage } from "../components/Pages/IndexPage/IndexPage";
 import content from "../data/pages/writing.json";
 
-const WritingIndex = ({ pageLinks }: { pageLinks: PageLink[] }) => {
+const WritingIndexPage = ({ pageLinks }: { pageLinks: PageLink[] }) => {
   return <IndexPage data={content} pageLinks={pageLinks} />;
 };
 
-export default WritingIndex;
+export default WritingIndexPage;
 
 const WRITING_POSTS_PATH = join(process.cwd(), "data/pages/writing");
 

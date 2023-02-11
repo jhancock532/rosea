@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
-import HomePage from "../components/Pages/HomePage";
+import GenericContentPage from "../components/Pages/GenericContentPage";
 import data from "../data/pages/index.json";
 
 const Home: NextPage = () => {
-  return <HomePage data={data} />;
+  return <GenericContentPage data={data} />;
 };
 
 export default Home;

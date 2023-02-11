@@ -1,15 +1,11 @@
+import GenericContentPage from "components/Pages/GenericContentPage";
 import fs from "fs";
 import { join } from "path";
 
 const POSTS_PATH = join(process.cwd(), "data/pages/writing");
 
 const Post = ({ data }: { data: any }) => {
-  return (
-    <div>
-      <h1>{data.content.title}</h1>
-      <p>{data.content.introduction}</p>
-    </div>
-  );
+  return <GenericContentPage data={data} />;
 };
 
 // Generate a list of path names from all the .json files in the /data/writing directory.
