@@ -11,7 +11,7 @@
 
 .input {
   @include font-size(m);
-  border: 2px solid $color--gray;
+  border: 2px solid $color--grey;
   border-radius: $border-radius-small;
   width: 100%;
   padding: 4px;
@@ -24,6 +24,6 @@
 
 .advice {
   @include body-text();
-  color: $color--gray;
+  color: $color--grey;
   margin: 0 0 $grid / 2 0;
 }

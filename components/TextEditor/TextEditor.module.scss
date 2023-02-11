@@ -23,7 +23,7 @@
 
 .editorPlaceholder {
   @include font-size(m);
-  color: $color--gray;
+  color: $color--grey;
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;

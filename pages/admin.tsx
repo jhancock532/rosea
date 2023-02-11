@@ -91,7 +91,6 @@ const Admin: NextPage = () => {
         {loginStatus === "logged-out" ? (
           <>
             <LoginScreen />
-            <Editor configuration={contentTypes.page.homepage} />
           </>
         ) : (
           <>
@@ -110,6 +109,7 @@ const Admin: NextPage = () => {
               Commit Website Data
             </Button>
             <TextEditor setOutputHTML={setTextEditorContent} />
+            <Editor configuration={contentTypes.page.homepage} />
           </>
         )}
       </div>
