@@ -1,11 +1,11 @@
 .button {
-  @include font-size(s);
+  @include font-size(m);
   display: block;
   max-width: max-content;
-  padding: $grid * 0.75;
+  padding: $grid * 0.5 $grid;
   border: none;
-  letter-spacing: 1px;
-  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-weight: 800;
   border-radius: $border-radius-small;
 
   &:hover {

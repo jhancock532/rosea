@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <SettingsProvider settings={settings}>
       <EditorProvider data={value}>
         <style jsx global>{`
-          html {
+          * {
             font-family: ${sentient.style.fontFamily};
           }
         `}</style>

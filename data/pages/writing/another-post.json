@@ -2,13 +2,13 @@
   "metadata": {
     "title": "Test Post",
     "description": "A test post for content authorship.",
-    "uuid": "abcdef111111111",
+    "uuid": "abcdef123456789",
     "date-published": "Mon, 20 Feb 2023 16:05:35 GMT",
     "date-last-edited": "Mon, 20 Feb 2023 16:05:35 GMT"
   },
   "content": {
-    "title": "Welcome to the test post",
-    "introduction": "You can load these posts and create new pages via the GitHub api in the /admin/ route (soon)",
-    "richtext": "<p>Hello world!</p>"
+    "title": "Another test post",
+    "introduction": "Some introduction text here, without any HTML tags.",
+    "richtext": "<p>Hello world!</p><p>This post has multiple paragraphs</p>"
   }
 }

@@ -12,10 +12,10 @@ export const Header = () => {
         <Link href="/" className={styles.title}>
           {settings?.siteName}
         </Link>
-        <Link href="/rosea/writing" className={styles.link}>
+        <Link href="/writing" className={styles.link}>
           Writing
         </Link>
-        <Link href="/rosea/admin" className={styles.link}>
+        <Link href="/admin" className={styles.link}>
           Admin
         </Link>
       </nav>

@@ -1,17 +1,43 @@
-.splitContainer {
-  display: flex;
+.title {
+  @include h1-title();
+}
+
+.container {
+  @include core-grid();
+  padding: $grid 0;
+
+  @include at-media(desktop) {
+    padding-top: $grid * 4;
+    padding-bottom: $grid * 2;
+  }
 }
 
 .editorContainer {
-  background-color: $color--white;
-  width: 50vw;
-  height: 100vh;
-  padding: $grid;
+  grid-column-start: content-start;
+  grid-column-end: content-end;
 }
 
-.previewContainer {
-  background-color: $color--white;
-  border-left: 4px solid #000;
-  width: 50vw;
-  height: 100vh;
+.description {
+  @include font-size(m);
+  margin: 0 0 $grid * 2 0;
+  line-height: 1.5;
+}
+
+.postEditorSelect {
+  @include font-size(s);
+  margin: 0 0 $grid * 2 0;
+  line-height: 1.5;
+
+  padding: 5px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.textArea {
+  @include font-size(m);
+  margin: $grid * 2 0;
+  line-height: 1.5;
+
+  padding: 5px;
+  width: 100%;
 }
