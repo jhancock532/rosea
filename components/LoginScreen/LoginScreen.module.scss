@@ -4,13 +4,7 @@
   gap: $grid * 2;
 }
 
-.title {
-  @include font-size(l);
-  margin-top: 1rem;
-  margin-bottom: 0;
-}
-
 .notice {
-  @include font-size(s);
+  @include font-size(m);
   margin: 0;
 }
